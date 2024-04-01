@@ -69,13 +69,14 @@ struct t_datetime
         t = mktime(&tm);
     }
 };
-template <const std::string& pattern>
+template <const std::string_view& pattern>
 struct t_patternstr
 {
     std::string _val;
     bool operator=(std::string tval)
     {
-        std::regex r(pattern);
+        const std::string p {pattern};
+        std::regex r(p);
         std::smatch m;
         std::regex_search(tval,m,r);
         if (m.size() > 0)
@@ -105,10 +106,13 @@ struct t_typevar
 typedef t_typevar<double> t_grEqZero;
 typedef t_typevar<double> t_grZero;
 typedef t_typevar<double> t_zeroOne;
-const std::string e_countryCode_iso3166alpha2_pattern = "[A-Z]{2}";
+
+
+inline constexpr std::string_view e_countryCode_iso3166alpha2_pattern = "[A-Z]{2}";
 typedef t_patternstr<e_countryCode_iso3166alpha2_pattern> e_countryCode_iso3166alpha2;
-const std::string e_countryCode_iso3166alpha3_deprecated_pattern = "[A-Z]{3}";
+inline constexpr std::string_view e_countryCode_iso3166alpha3_deprecated_pattern = "[A-Z]{3}";
 typedef t_patternstr<e_countryCode_iso3166alpha3_deprecated_pattern> e_countryCode_iso3166alpha3_deprecated;
+
 // Enumerations
 enum class e_dataQuality_RawData_PostProcessing : std::uint8_t
 {

@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 
 PROJECT(ad-xolib LANGUAGES C CXX)
 
-SET(CMAKE_CXX_STANDARD 14)
+SET(CMAKE_CXX_STANDARD 20)
 
 INCLUDE (${CMAKE_SOURCE_DIR}/cmake/utils.cmake)
 INCLUDE(GenerateExportHeader)
@@ -23,7 +23,7 @@ ENDIF()
 
 IF ( ${CMAKE_SYSTEM_NAME} MATCHES "Windows")
     IF (NOT CMAKE_BUILD_TYPE)
-      SET(CMAKE_BUILD_TYPE Debug CACHE STRING 
+      SET(CMAKE_BUILD_TYPE Debug CACHE STRING
          "Choose the type of build, options are : None Debug Release RelWithDebInfo MinSizeRel."
          FORCE)
     ENDIF()
